@@ -1,0 +1,14 @@
+.auth__holder {
+    color: #ccc;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0 13px;
+    margin: 0;
+    min-width: 350px;
+    background-color: #000;
+}

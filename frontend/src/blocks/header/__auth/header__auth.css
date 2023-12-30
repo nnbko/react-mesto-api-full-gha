@@ -1,0 +1,7 @@
+.header__auth {
+    column-gap: 24px;
+    flex-direction: row;
+    display: flex;
+    height: fit-content;
+    padding: 0px 0 36px;
+}
