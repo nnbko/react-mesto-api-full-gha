@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.75.112
 
-Frontend https://...
+Frontend https://nnbko.nomoredomainsmonster.ru/sign-in
 
-Backend https://...
+Backend https://api.nnbko.nomoredomainsmonster.ru/
