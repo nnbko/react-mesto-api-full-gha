@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { api } from '../utils/Api.js';
 import * as auth from '../utils/auth';
@@ -35,6 +35,8 @@ function App() {
   const [email, setProfileEmail] = React.useState("");
   const [isInfoTooltipPopupOpen, setInfoTooltipopupOpen] = React.useState(false);
   const [tooltipInfo, setTooltipInfo] = React.useState({ src: '', text: '', });
+
+  //15
   React.useEffect(() => {
     if (loggedIn) {
       api
@@ -183,7 +185,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
-  };
+  }
 
   function handleAddPlace(data) {
     api
@@ -195,7 +197,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       })
-  };
+  }
 
 
   return (
