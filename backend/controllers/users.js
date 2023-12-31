@@ -1,4 +1,5 @@
 /* eslint-disable eol-last */
+const { NODE_ENV, JWT_SECRET } = process.env;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
@@ -11,7 +12,7 @@ const MONGODB_DUPLICATE_ERROR_CODE = 11000;
 
 module.exports.getUsers = (req, res, next) => {
   User.find()
-    .then((users) => { res.status(200).send({ data: users }); })
+    .then((users) => { res.status(200).send(users); })
     .catch(next);
 };
 module.exports.getUser = (req, res, next) => {
@@ -26,6 +27,7 @@ module.exports.getUser = (req, res, next) => {
     })
     .catch(next);
 };
+
 module.exports.getUserById = (req, res, next) => {
   const { userId } = req.params;
   User.findById(userId)
@@ -101,7 +103,7 @@ module.exports.updateUserAvatar = (req, res, next) => {
   const userId = req.user._id;
 
   User.findByIdAndUpdate(userId, { avatar }, { new: true, runValidators: true })
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ErrorBadRequest('Переданы некорректные данные'));
@@ -116,7 +118,7 @@ module.exports.login = (req, res, next) => {
 
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'super-strong-secret', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'super-strong-secret', { expiresIn: '7d' });
       res.send({ token });
     })
     .catch(next);

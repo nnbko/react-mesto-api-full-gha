@@ -1,3 +1,4 @@
+/* eslint linebreak-style: ["error", "windows"] */
 class ErrorConflict extends Error {
   constructor(message) {
     super(message);

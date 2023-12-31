@@ -1,81 +1,105 @@
 class Api {
     constructor(apiOptions) {
         this._baseUrl = apiOptions.url;
-        this._headers = apiOptions.headers;
     }
 
     _getData(res) {
-        if (!res.ok) {
-            return Promise.reject(`Ошибка: ${res.status}`);
+        if (res.ok) {
+            return res.json();
         }
-        return res.json();
+        return Promise.reject(`Ошибка: ${res.status}`);
     }
 
     getUserInfo() {
+        const token = localStorage.getItem('jwt');
         return fetch(`${this._baseUrl}/users/me`, {
-            headers: this._headers
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
         })
-            .then(res => this._getData(res))
+            .then(this._getData)
     }
-
     pushUserInfo(data) {
+        const token = localStorage.getItem('jwt');
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({
                 name: data.name,
                 about: data.about
             })
         })
-            .then(res => this._getData(res))
+            .then(this._getData)
     }
     pushAvatar(newLinkAvatar) {
+        const token = localStorage.getItem('jwt');
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({
                 avatar: newLinkAvatar.avatar,
             })
         })
-            .then(res => this._getData(res))
+            .then(this._getData)
     }
     getInitialCards() {
+        const token = localStorage.getItem('jwt');
         return fetch(`${this._baseUrl}/cards`, {
-            headers: this._headers
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
         })
-            .then(res => this._getData(res))
+            .then(this._getData)
     }
     deleteCard(cardId) {
+        const token = localStorage.getItem('jwt');
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
-            headers: this._headers
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
         })
-            .then(res => this._getData(res))
+            .then(this._getData)
     }
     changeLikeCardStatus(cardId, isLiked) {
+        const token = localStorage.getItem('jwt');
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-            method: isLiked ? 'DELETE' : 'PUT',
-            headers: this._headers,
+            method: `${!isLiked ? "DELETE" : "PUT"}`,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
         })
-            .then(res => this._getData(res))
+            .then(this._getData)
     }
     pushInfoCreateCard(data) {
+        const token = localStorage.getItem('jwt');
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
-            headers: this._headers,
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify(data)
         })
-            .then(res => this._getData(res))
+            .then(this._getData)
     }
     getAllInfo() {
         return Promise.all([this.getUserInfo(), this.getInitialCards()])
     }
-};
-
+}
 export const apiOptions = {
-    url: 'https://mesto.nomoreparties.co/v1/cohort-76',
+    url: "https://api.nnbko.nomoredomainsmonster.ru",
     headers: {
-        authorization: '7cbb9037-1aa3-4e4a-b012-940234b48bc1',
         'Content-Type': 'application/json'
     }
 }

@@ -27,24 +27,21 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({ link: '', name: '' });
   const [isConfirmPopupOpen, setConfirmPopupOpen] = useState(false);
   const [isCardPopupOpen, setCardPopupOpen] = useState(false);
-  const [currentUser, setCurrentUser] = React.useState({})
-  const [cards, setCards] = React.useState([]);
+  const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
 
   //pr12
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [email, setProfileEmail] = React.useState("");
   const [isInfoTooltipPopupOpen, setInfoTooltipopupOpen] = React.useState(false);
   const [tooltipInfo, setTooltipInfo] = React.useState({ src: '', text: '', });
-
-
-
   React.useEffect(() => {
     if (loggedIn) {
       api
         .getAllInfo()
-        .then(([userData, cards]) => {
+        .then(([userData, card]) => {
           setCurrentUser(userData);
-          setCards(cards);
+          setCards(card);
         })
         .catch((error) => {
           console.log(error);
@@ -55,16 +52,15 @@ function App() {
   React.useEffect(() => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
-      auth.checkToken(jwt)
+      auth.checkToken()
         .then(res => {
           navigate('/', { replace: true });
           setLoggedIn(true);
-          setProfileEmail(res.data.email);
+          setProfileEmail(res.email);
         })
         .catch(err => console.log(err))
     }
   }, [loggedIn]);
-
 
 
   const onRegister = ({ email, password }) => {
@@ -93,8 +89,8 @@ function App() {
     auth
       .authorize(email, password)
       .then((res) => {
-        localStorage.setItem('token', res.token);
-        setProfileEmail(email);
+        localStorage.setItem('jwt', res.token);
+        setProfileEmail(res.email);
         setLoggedIn(true);
         navigate('/', { replace: true });
 
@@ -111,7 +107,7 @@ function App() {
 
 
   const signOut = () => {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem('jwt');
     setProfileEmail("");
     setLoggedIn(false);
     navigate("/sign-in", { replace: true });
@@ -146,19 +142,22 @@ function App() {
     setInfoTooltipopupOpen(false);
   }
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, isLiked)
+    const isLiked = card.likes.some((id) => id === currentUser._id);
+
+    api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }
   function handleCardDelete(card) {
     api.deleteCard(card._id)
       .then(() => {
-        setCards((state) => state.filter(item => item._id !== card._id));
+        setCards((cards) => cards.filter((id) => id !== card));
       })
       .catch((err) => {
         console.log(err);

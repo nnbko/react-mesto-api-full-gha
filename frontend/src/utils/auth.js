@@ -1,4 +1,4 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = "https://api.nnbko.nomoredomainsmonster.ru";
 
 
 const getData = (res) => {
@@ -8,7 +8,7 @@ const getData = (res) => {
   return res.json();
 }
 
-export const register = (email, password ) => {
+export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
@@ -39,7 +39,8 @@ export const authorize = (email, password) => {
     .catch(err => console.log(err))
 };
 
-export const checkToken = (token) => {
+export const checkToken = () => {
+  const token = localStorage.getItem('jwt');
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {

@@ -31,7 +31,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
                     <button className="profile__add-button" type="button" onClick={onAddPlace} />
                 </section>
                 <section className="elements">
-                    {cards.map((card) => (
+                    {cards.map(card => (
                         <Card
                             key={card._id}
                             card={card}

@@ -1,4 +1,5 @@
 /* eslint-disable eol-last */
+/* eslint linebreak-style: ["error", "windows"] */
 const router = require('express').Router();
 const { validateUserId, validateUpadteUser, validateUpdateAvatar } = require('../utils/validation');
 const {
