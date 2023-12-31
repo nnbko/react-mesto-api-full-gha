@@ -98,7 +98,7 @@ class Api {
     }
 }
 export const apiOptions = {
-    url: "https://api.nnbko.nomoredomainsmonster.ru",
+    url: "http://127.0.0.1:3001",
     headers: {
         'Content-Type': 'application/json'
     }
