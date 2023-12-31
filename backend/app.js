@@ -18,7 +18,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-mongoose.connect(NODE_ENV === 'production' ? DB_ADDRESS : 'mongodb://127.0.0.1/mestodb');
+mongoose.connect('mongodb://127.0.0.1/mestodb');
 app.use(requestLogger);
 app.post('/signin', validateLogin, login);
 app.post('/signup', validateCreateUser, createUser);
@@ -33,4 +33,4 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(NODE_ENV === 'production' ? PORT : 3001);
+app.listen(3001);
