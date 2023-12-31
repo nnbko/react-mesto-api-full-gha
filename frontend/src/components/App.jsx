@@ -143,28 +143,25 @@ function App() {
     setCardPopupOpen(false);
     setInfoTooltipopupOpen(false);
   }
-  function handleCardLike(card) {
-    const isLiked = card.likes.some((id) => id === currentUser._id);
-
-    api.changeLikeCardStatus(card._id, !isLiked)
-      .then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  function handleCardLike(card) { 
+    const isLiked = card.likes.some(id => id === currentUser._id); 
+    api.changeLikeCardStatus(card._id, isLiked) 
+      .then((newCard) => { 
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c)); 
+      }) 
+      .catch((err) => { 
+        console.log(err); 
+      }) 
   }
-  function handleCardDelete(card) {
-    api.deleteCard(card._id)
-      .then(() => {
-        setCards((cards) => cards.filter((id) => id !== card));
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
+  function handleCardDelete(card) { 
+    api.deleteCard(card._id) 
+      .then(() => { 
+        setCards((state) => state.filter(id=> id !== card._id)); 
+      }) 
+      .catch((err) => { 
+        console.log(err); 
+      }) 
+  } 
   function handleUpdateUser(data) {
     api.pushUserInfo(data)
       .then((data) => {
