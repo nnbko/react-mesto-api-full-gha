@@ -1,4 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"] */
 class ErorrNotFound extends Error {
   constructor(message) {
     super(message);

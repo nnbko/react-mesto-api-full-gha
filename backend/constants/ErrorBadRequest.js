@@ -1,4 +1,3 @@
-/* eslint linebreak-style: ["error", "windows"] */
 class ErrorBadRequest extends Error {
   constructor(message) {
     super(message);

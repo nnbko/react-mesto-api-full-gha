@@ -17,7 +17,7 @@ const { login, createUser } = require('./controllers/users');
 const app = express();
 
 app.use(express.json());
-app.use(cors({ origin: ['http://127.0.0.1:3001', 'https://nnbko.nomoredomainsmonster.ru'] }));
+app.use(cors({ origin: ['http://127.0.0.1:3000', 'https://nnbko.nomoredomainsmonster.ru'] }));
 mongoose.connect(NODE_ENV === 'production' ? DB_ADDRESS : 'mongodb://127.0.0.1/mestodb');
 app.use(requestLogger);
 app.get('/crash-test', () => {
@@ -38,4 +38,4 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(NODE_ENV === 'production' ? PORT : 3001);
+app.listen(NODE_ENV === 'production' ? PORT : 3000);
