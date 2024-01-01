@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const ErrorNotFound = require('../constants/ErorrNotFound');
-const ErrorServer = require('../constants/ErrorServer');
 const ErrorBadRequest = require('../constants/ErrorBadRequest');
 const ErrorConflict = require('../constants/ErrorConflict');
 
