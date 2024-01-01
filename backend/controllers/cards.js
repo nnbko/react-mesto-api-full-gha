@@ -1,7 +1,6 @@
 /* eslint-disable eol-last */
 const Card = require('../models/card');
 const ErrorNotFound = require('../constants/ErorrNotFound');
-const ErrorServer = require('../constants/ErrorServer');
 const ErrorBadRequest = require('../constants/ErrorBadRequest');
 const ErrorForbidden = require('../constants/ErrorForbidden');
 
@@ -20,7 +19,6 @@ module.exports.createCard = (req, res, next) => {
       if (err.name === 'ValidationError') {
         return next(new ErrorNotFound('Карточка не найдена'));
       }
-      return next(new ErrorServer('На сервере произошла ошибка'));
     });
 };
 module.exports.deleteCard = (req, res, next) => {
@@ -67,7 +65,6 @@ module.exports.addLike = (req, res, next) => {
       if (err.name === 'CastError') {
         return next(new ErrorBadRequest('Неккорктный ID'));
       }
-      return next(new ErrorServer('На сервере произошла ошибка'));
     });
 };
 module.exports.removeLike = (req, res, next) => {
