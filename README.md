@@ -1,7 +1,7 @@
 
 # Проект: Место - проектная работа для [Яндекс Практикум](https://practicum.yandex.ru/)
 
-![Скриншот 02-03-2023 031306](https://user-images.githubusercontent.com/113699485/222625978-8c89e6fa-e058-4f61-9aa1-32b9e46047b4.jpg)
+![Скриншот 02-03-2023 031306]([https://user-images.githubusercontent.com/113699485/222625978-8c89e6fa-e058-4f61-9aa1-32b9e46047b4.jpg](https://github.com/nnbko/react-mesto-api-full-gha/blob/main/frontend/src/images/photo_2024-05-15_16-49-27.jpg))
 
 ## Описание проекта
 
@@ -77,9 +77,3 @@
 - `npm run dev` - сборка проекта в режиме разработки
 - `npm start` - сборка проекта в продакшн-режиме
 
-## Ссылки
-
-- [Макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-- [Репозиторий проекта](https://github.com/Argayash1/react-mesto-api-full-gha)
-- [Деплой фронтенд-части приложения](https://mesto2023.students.nomoredomains.monster)
-- [Деплой бэкенд-части приложения](https://apii.mesto2023.students.nomoredomains.monster)
