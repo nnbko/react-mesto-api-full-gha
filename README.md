@@ -1,7 +1,7 @@
 
 # Проект: Место - проектная работа для [Яндекс Практикум](https://practicum.yandex.ru/)
 
-![Скриншот 02-03-2023 031306]([https://user-images.githubusercontent.com/113699485/222625978-8c89e6fa-e058-4f61-9aa1-32b9e46047b4.jpg](https://github.com/nnbko/react-mesto-api-full-gha/blob/main/frontend/src/images/photo_2024-05-15_16-49-27.jpg))
+![Скриншот 02-03-2023 031306](https://github.com/nnbko/react-mesto-api-full-gha/blob/main/frontend/src/images/photo_2024-05-15_16-49-27.jpg)
 
 ## Описание проекта
 
